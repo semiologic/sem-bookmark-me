@@ -1,9 +1,9 @@
 === Bookmark Me ===
-Contributors: Denis-de-Bernardy
+Contributors: Denis-de-Bernardy, Mike Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: bookmark-me, social-bookmarking, social-media, buzzup, delicious, digg, facebook, mixx, reddit, stumbleupon, twitter, bookmarking, widget, semiologic
 Requires at least: 2.8
-Tested up to: 3.2.1
+Tested up to: 3.5
 Stable tag: trunk
 
 Adds buttons that let your visitors share your content on social media sites.
@@ -35,10 +35,16 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 == Installation ==
 
 1. Upload the plugin folder to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
+2. Activate the plugin through the 'Plugins' menu in WordPress
 
 
 == Change Log ==
+
+= 5.1 =
+
+- WP 3.5 compat
+- Changed top level services to Facebook, Twitter and Google+
+- Updated secondary services to current offering.  Removed out-dated/not in service services
 
 = 5.0.2 =
 

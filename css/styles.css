@@ -74,28 +74,27 @@
 	background-position: left center;
 }
 
-.bookmark_me a.buzzup {
-	background-image: url(../icons/buzzup.gif);
+.bookmark_me a.facebook {
+	background-image: url(../icons/facebook.png);
 	background-position: left center;
 }
 
-.bookmark_me a.digg {
-	background-image: url(../icons/digg.gif);
-	background-position: left center;
-}
-
-.bookmark_me a.mixx {
-	background-image: url(../icons/mixx.gif);
+.bookmark_me a.googleplus {
+	background-image: url(../icons/google+.png);
 	background-position: left center;
 }
 
 .bookmark_me a.twitter {
-	background-image: url(../icons/twitter.gif);
+	background-image: url(../icons/twitter.png);
 	background-position: left center;
 }
 
 .bookmark_me a.help {
 	background-position: 0px 0px;
+}
+
+.bookmark_me a.buzzup {
+	background-position: -16px -20px;
 }
 
 .bookmark_me a.current {
@@ -106,12 +105,12 @@
 	background-position: 0px -40px;
 }
 
-.bookmark_me a.diigo {
-	background-position: 0px -60px;
+.bookmark_me a.digg {
+	background-position: 0px -620px;
 }
 
-.bookmark_me a.facebook {
-	background-position: 0px -80px;
+.bookmark_me a.diigo {
+	background-position: 0px -60px;
 }
 
 .bookmark_me a.fark {
@@ -122,24 +121,44 @@
 	background-position: 0px -120px;
 }
 
+.bookmark_me a.instapaper {
+	background-position: 0px -460px;
+}
+
 .bookmark_me a.linkedin {
 	background-position: 0px -140px;
 }
 
-.bookmark_me a.live {
-	background-position: 0px -160px;
+.bookmark_me a.msn {
+	background-position: 0px -598px;
+}
+
+.bookmark_me a.mixx {
+	background-position: 0px -360px;
 }
 
 .bookmark_me a.myspace {
-	background-position: 0px -180px;
+	background-position: 0px -180px
 }
 
 .bookmark_me a.newsvine {
 	background-position: 0px -200px;
 }
 
+.bookmark_me a.pinterest {
+	background-position: 0px -520px;;
+}
+
+.bookmark_me a.pocket {
+	background-position: 0px -420px;
+}
+
 .bookmark_me a.propeller {
 	background-position: 0px -220px;
+}
+
+.bookmark_me a.readability {
+	background-position: 0px -558px;
 }
 
 .bookmark_me a.reddit {
@@ -155,16 +174,21 @@
 }
 
 .bookmark_me a.stumbleupon {
-	background-position: 0px -300px;
+	background-position: 0px -579px;
 }
 
 .bookmark_me a.tipd {
 	background-position: 0px -320px;
 }
 
-.bookmark_me a.yahoo {
-	background-position: 0px -340px;
+.bookmark_me a.tumblr {
+	background-position: 0px -480px;
 }
+
+.bookmark_me a.yahoo {
+	background-position: 0px -500px;
+}
+
 
 .bookmark_me_narrow a {
 	width: 60px;
