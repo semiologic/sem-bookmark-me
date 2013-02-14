@@ -40,7 +40,7 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 
 == Change Log ==
 
-= 5.1.2 =
+= 5.2 =
 
 - Added Pinterest as top level service
 
