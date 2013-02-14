@@ -3,7 +3,7 @@
 Plugin Name: Bookmark Me
 Plugin URI: http://www.semiologic.com/software/bookmark-me/
 Description: Widgets that let your visitors share your webpages on social media sites such as Buzzup, Delicious and Digg.
-Version: 5.1.1
+Version: 5.1.2
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: sem-bookmark-me
@@ -127,7 +127,7 @@ class bookmark_me extends WP_Widget {
 	function bookmark_me() {
 		$widget_ops = array(
 			'classname' => 'bookmark_me',
-			'description' => __('Bookmark links to social media sites such as Buzzup, Delicious and Digg', 'sem-bookmark-me'),
+			'description' => __('Bookmark links to social media sites such as Facebook, Google+ and Twitter', 'sem-bookmark-me'),
 			);
 		
 		$this->init();
@@ -146,7 +146,7 @@ class bookmark_me extends WP_Widget {
 	function widget($args, $instance) {
 		if ( is_feed() || isset($_GET['action']) && $_GET['action'] == 'print' )
 			return;
-		
+
 		extract($args, EXTR_SKIP);
 		$instance = wp_parse_args($instance, bookmark_me::defaults());
 		extract($instance, EXTR_SKIP);
@@ -162,14 +162,25 @@ class bookmark_me extends WP_Widget {
 		} elseif ( in_the_loop() ) {
 			$page_title = get_the_title();
 			$page_url = apply_filters('the_permalink', get_permalink());
+            $page_excerpt = strip_tags(strip_shortcodes(get_the_excerpt()));
+            $page_excerpt = (empty($page_excerpt)) ? substr(strip_tags(strip_shortcodes(get_the_content())), 0, 250)
+                : $page_excerpt;
+            $page_image = bookmark_me::get_first_image(get_the_ID(), get_the_content());
 		} elseif ( is_singular() ) {
 			global $wp_the_query;
 			$post_id = $wp_the_query->get_queried_object_id();
+            $post_obj = $wp_the_query->get_queried_object();
 			$page_title = get_the_title($post_id);
 			$page_url = apply_filters('the_permalink', get_permalink($post_id));
+            $page_excerpt = strip_tags(strip_shortcodes($post_obj->post_excerpt));
+            $page_excerpt = (empty($page_excerpt)) ? substr(strip_tags(strip_shortcodes($post_obj->post_content)), 0, 250)
+                : $page_excerpt;
+            $page_image = bookmark_me::get_first_image($post_id, $post_obj->post_content);
 		} else {
 			$page_title = get_option('blogname');
 			$page_url = user_trailingslashit(get_option('home'));
+            $page_excerpt = $page_title;
+            $page_image = '';
 		}
 		
 		$page_title = @html_entity_decode($page_title, ENT_COMPAT, get_option('blog_charset'));
@@ -268,17 +279,64 @@ class bookmark_me extends WP_Widget {
 			array(
 				'%enc_url%', '%enc_title%',
 				'%email_url%', '%email_title%',
-				'%print_url%',
+				'%print_url%', '%enc_excerpt%',
+                '%enc_image%',
 				),
 			array(
 				urlencode($page_url), urlencode($page_title),
 				rawurlencode($page_url), rawurlencode($page_title),
-				esc_url($page_url . $print_action),
+				esc_url($page_url . $print_action), urlencode($page_excerpt),
+                urlencode($page_image),
 				),
 			$o);
 	} # widget()
-	
-	
+
+    /**
+     * get_first_image()
+     *
+     * @param $post_id
+     * @param $post_content
+     * @return array $services
+     */
+
+    function get_first_image($post_id, $post_content) {
+        $args = array(
+       		'numberposts' => 1,
+       		'order'=> 'ASC',
+       		'post_mime_type' => 'image',
+       		'post_parent' => $post_id,
+       		'post_status' => null,
+       		'post_type' => 'attachment'
+       	);
+
+       	$attachments = get_children( $args );
+
+       	// Check for image attachments in posts
+       	if ($attachments){
+       		foreach($attachments as $attachment){
+       			return $attachment->guid;
+       		}
+       	}
+        else {
+       		// If no image attachements, then get the full post thumbnail
+       		if(function_exists('has_post_thumbnail') && has_post_thumbnail($post_id)){
+       			$imageId = get_post_thumbnail_id($post_id);
+       			$imageUrl = wp_get_attachment_image_src($imageId, 'large');
+       			return $imageUrl[0];
+       		}
+            else{
+       			// Or else get the first image present in the post content
+       			$output = preg_match_all( '/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $post_content, $matches );
+
+       			if(!empty($matches[1])){
+       				$firstImg = $matches [1] [0];
+       				return $firstImg;
+       			}
+
+       		}
+       	}
+    }
+
 	/**
 	 * get_main_services()
 	 *
@@ -299,10 +357,10 @@ class bookmark_me extends WP_Widget {
 		        'name' => __('Twitter', 'sem-bookmark-me'),
 				'url' => 'http://twitter.com/timeline/home/?status=%enc_url%',
 				),
- /*            'pinterest' => array(
+            'pinterest' => array(
                 'name' => __('Pinterest', 'sem-bookmark-me'),
-                'url' => 'http://www.pinterest.com',
-                ),  */
+                'url' => 'http://www.pinterest.com/pin/create/button/?url=%enc_url%&amp;media=%enc_image%&amp;description=%enc_excerpt%',
+                ),
 			);
 	} # get_main_services()
 	
@@ -369,7 +427,7 @@ class bookmark_me extends WP_Widget {
 				),
             'tumblr' => array(
          		'name' => __('Tumblr', 'sem-bookmark-me'),
-         		'url' => 'http://www.tumblr.com/share?v=3&u=%enc_url%&t=%enc_title%',
+         		'url' => 'http://www.tumblr.com/share?v=3&u=%enc_url%&t=%enc_title%&s=%enc_excerpt%',
          		),
 		    'yahoo' => array(
 				'name' => __('Yahoo!', 'sem-bookmark-me'),
