@@ -1,7 +1,7 @@
 === Bookmark Me ===
 Contributors: Denis-de-Bernardy, Mike Koepke
 Donate link: http://www.semiologic.com/partners/
-Tags: bookmark-me, social-bookmarking, social-media, buzzup, delicious, digg, facebook, mixx, reddit, stumbleupon, twitter, bookmarking, widget, semiologic
+Tags: bookmark-me, social-bookmarking, social-media, google+, delicious, digg, facebook, pinterest, reddit, stumbleupon, twitter, bookmarking, widget, semiologic
 Requires at least: 2.8
 Tested up to: 3.5
 Stable tag: trunk
