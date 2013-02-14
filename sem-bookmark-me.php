@@ -3,7 +3,7 @@
 Plugin Name: Bookmark Me
 Plugin URI: http://www.semiologic.com/software/bookmark-me/
 Description: Widgets that let your visitors share your webpages on social media sites such as Buzzup, Delicious and Digg.
-Version: 5.1
+Version: 5.1.1
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: sem-bookmark-me
@@ -293,12 +293,16 @@ class bookmark_me extends WP_Widget {
                 ),
             'googleplus' => array(
                 'name' => __('Google+', 'sem-bookmark-me'),
-                'url' => 'https://m.google.com/app/plus/x/?content=%enc_url%&v=compose&hideloc=1',
+                'url' => 'https://plus.google.com/share?url=%enc_url',
                 ),
 			'twitter' => array(
 		        'name' => __('Twitter', 'sem-bookmark-me'),
 				'url' => 'http://twitter.com/timeline/home/?status=%enc_url%',
 				),
+ /*            'pinterest' => array(
+                'name' => __('Pinterest', 'sem-bookmark-me'),
+                'url' => 'http://www.pinterest.com',
+                ),  */
 			);
 	} # get_main_services()
 	
@@ -347,10 +351,6 @@ class bookmark_me extends WP_Widget {
 				'name' => __('Newsvine', 'sem-bookmark-me'),
 				'url' => 'http://www.newsvine.com/_tools/seed&save?h=%enc_title%&u=%enc_url%',
 				),
- /*           'pinterest' => array(
-                'name' => __('Pinterest', 'sem-bookmark-me'),
-                'url' => 'http://www.pinterest.com',
-                ),  */
             'pocket' => array(
                  'name' => __('Pocket', 'sem-bookmark-me'),
                  'url' => 'https://getpocket.com/save?url=%enc_url%&title=%enc_title%',

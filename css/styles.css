@@ -84,6 +84,11 @@
 	background-position: left center;
 }
 
+.bookmark_me a.pinterest {
+    background-image: url(../icons/pinterest.png);
+   	background-position: left center;
+}
+
 .bookmark_me a.twitter {
 	background-image: url(../icons/twitter.png);
 	background-position: left center;
@@ -145,9 +150,9 @@
 	background-position: 0px -200px;
 }
 
-.bookmark_me a.pinterest {
-	background-position: 0px -520px;;
-}
+/*.bookmark_me a.pinterest {
+	background-position: 0px -520px;
+}*/
 
 .bookmark_me a.pocket {
 	background-position: 0px -420px;

@@ -40,6 +40,10 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 
 == Change Log ==
 
+= 5.1.1 =
+
+- Updated google plus bookmark link
+
 = 5.1 =
 
 - WP 3.5 compat
