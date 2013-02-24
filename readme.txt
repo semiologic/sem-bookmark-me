@@ -40,6 +40,10 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 
 == Change Log ==
 
+= 5.2.1 =
+
+- Fixed broken Google+ url being generated
+
 = 5.2 =
 
 - Added Pinterest as top level service
