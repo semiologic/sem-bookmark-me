@@ -40,6 +40,10 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 
 == Change Log ==
 
+= 5.2.2 =
+
+- Ensure bookmark popup is on top of other elements
+
 = 5.2.1 =
 
 - Fixed broken Google+ url being generated

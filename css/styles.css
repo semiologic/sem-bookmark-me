@@ -62,6 +62,7 @@
 	-khtml-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
+    z-index: 1000;
 }
 
 .bookmark_me a.email_entry {
