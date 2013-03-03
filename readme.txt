@@ -1,10 +1,12 @@
 === Bookmark Me ===
-Contributors: Denis-de-Bernardy, Mike Koepke
+Contributors: Denis-de-Bernardy, Mike_Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: bookmark-me, social-bookmarking, social-media, google+, delicious, digg, facebook, pinterest, reddit, stumbleupon, twitter, bookmarking, widget, semiologic
 Requires at least: 2.8
-Tested up to: 3.5
+Tested up to: 3.5.1
 Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Adds buttons that let your visitors share your content on social media sites.
 
@@ -39,6 +41,10 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 
 
 == Change Log ==
+
+= 5.2.3 =
+
+- Removed the "What's This?' link
 
 = 5.2.2 =
 
