@@ -3,7 +3,7 @@
 Plugin Name: Bookmark Me
 Plugin URI: http://www.semiologic.com/software/bookmark-me/
 Description: Widgets that let your visitors share your webpages on social media sites such as Buzzup, Delicious and Digg.
-Version: 5.2.3
+Version: 5.3
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: sem-bookmark-me
@@ -37,6 +37,47 @@ load_plugin_textdomain('sem-bookmark-me', false, dirname(plugin_basename(__FILE_
  **/
 
 class bookmark_me extends WP_Widget {
+
+    /**
+   	 * bookmark_me()
+   	 *
+   	 * @return void
+   	 **/
+
+   	function bookmark_me() {
+
+        add_action('widgets_init', array($this, 'widgets_init'));
+
+        if ( !is_admin() ) {
+        	add_action('wp_print_scripts', array($this, 'scripts'));
+        	add_action('wp_print_styles', array($this, 'styles'), 0);
+        	add_action('template_redirect', array($this, 'template_redirect'), 5);
+        }
+
+        foreach ( array(
+        		'switch_theme',
+        		'update_option_active_plugins',
+        		'update_option_sidebars_widgets',
+        		'generate_rewrite_rules',
+
+        		'flush_cache',
+        		'after_db_upgrade',
+        		) as $hook ) {
+        	add_action($hook, array($this, 'flush_cache'));
+        }
+
+        register_activation_hook(__FILE__, array($this, 'flush_cache'));
+        register_deactivation_hook(__FILE__, array($this, 'flush_cache'));
+
+   		$widget_ops = array(
+   			'classname' => 'bookmark_me',
+   			'description' => __('Bookmark links to social media sites such as Facebook, Google+ and Twitter', 'sem-bookmark-me'),
+   			);
+
+   		$this->init();
+   		$this->WP_Widget('bookmark_me', __('Bookmark Me', 'sem-bookmark-me'), $widget_ops);
+   	} # bookmark_me()
+
 	/**
 	 * init()
 	 *
@@ -116,24 +157,7 @@ class bookmark_me extends WP_Widget {
 	function widgets_init() {
 		register_widget('bookmark_me');
 	} # widgets_init()
-	
-	
-	/**
-	 * bookmark_me()
-	 *
-	 * @return void
-	 **/
 
-	function bookmark_me() {
-		$widget_ops = array(
-			'classname' => 'bookmark_me',
-			'description' => __('Bookmark links to social media sites such as Facebook, Google+ and Twitter', 'sem-bookmark-me'),
-			);
-		
-		$this->init();
-		$this->WP_Widget('bookmark_me', __('Bookmark Me', 'sem-bookmark-me'), $widget_ops);
-	} # bookmark_me()
-	
 	
 	/**
 	 * widget()
@@ -639,26 +663,6 @@ function the_bookmark_links($instance = null, $args = null) {
 } # the_bookmark_links()
 
 
-add_action('widgets_init', array('bookmark_me', 'widgets_init'));
+$bookmark_me = new bookmark_me();
 
-if ( !is_admin() ) {
-	add_action('wp_print_scripts', array('bookmark_me', 'scripts'));
-	add_action('wp_print_styles', array('bookmark_me', 'styles'), 0);
-	add_action('template_redirect', array('bookmark_me', 'template_redirect'), 5);
-}
-
-foreach ( array(
-		'switch_theme',
-		'update_option_active_plugins',
-		'update_option_sidebars_widgets',
-		'generate_rewrite_rules',
-		
-		'flush_cache',
-		'after_db_upgrade',
-		) as $hook ) {
-	add_action($hook, array('bookmark_me', 'flush_cache'));
-}
-
-register_activation_hook(__FILE__, array('bookmark_me', 'flush_cache'));
-register_deactivation_hook(__FILE__, array('bookmark_me', 'flush_cache'));
 ?>
