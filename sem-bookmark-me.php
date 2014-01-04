@@ -3,20 +3,19 @@
 Plugin Name: Bookmark Me
 Plugin URI: http://www.semiologic.com/software/bookmark-me/
 Description: Widgets that let your visitors share your webpages on social media sites such as Buzzup, Delicious and Digg.
-Version: 5.3
+Version: 5.3.1
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: sem-bookmark-me
 Domain Path: /lang
+License: Dual licensed under the MIT and GPLv2 licenses
 */
 
 /*
 Terms of use
 ------------
 
-This software is copyright Mesoconcepts (http://www.mesoconcepts.com), and is distributed under the terms of the GPL license, v.2.
-
-http://www.opensource.org/licenses/gpl-2.0.php
+This software is copyright Denis de Bernardy & Mike Koepke, and is distributed under the terms of the MIT and GPLv2 licenses.
 
 Fam Fam Fam silk icons (email_go, printer, information) are copyright Mark James (http://www.famfamfam.com/lab/icons/silk/), and CC-By licensed:
 
@@ -44,13 +43,13 @@ class bookmark_me extends WP_Widget {
    	 * @return void
    	 **/
 
-   	function bookmark_me() {
+	public function __construct() {
 
         add_action('widgets_init', array($this, 'widgets_init'));
 
         if ( !is_admin() ) {
-        	add_action('wp_print_scripts', array($this, 'scripts'));
-        	add_action('wp_print_styles', array($this, 'styles'), 0);
+        	add_action('wp_enqueue_scripts', array($this, 'scripts'));
+        	add_action('wp_enqueue_scripts', array($this, 'styles'), 0);
         	add_action('template_redirect', array($this, 'template_redirect'), 5);
         }
 
@@ -662,7 +661,4 @@ function the_bookmark_links($instance = null, $args = null) {
 	the_widget('bookmark_me', $instance, $args);
 } # the_bookmark_links()
 
-
 $bookmark_me = new bookmark_me();
-
-?>
