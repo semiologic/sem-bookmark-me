@@ -3,7 +3,7 @@
 Plugin Name: Bookmark Me
 Plugin URI: http://www.semiologic.com/software/bookmark-me/
 Description: Widgets that let your visitors share your webpages on social media sites such as Buzzup, Delicious and Digg.
-Version: 5.3.1
+Version: 5.4 dev
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: sem-bookmark-me
@@ -24,10 +24,6 @@ http://creativecommons.org/licenses/by/2.5/
 Other icons are copyright their respective holders.
 **/
 
-
-load_plugin_textdomain('sem-bookmark-me', false, dirname(plugin_basename(__FILE__)) . '/lang');
-
-
 /**
  * bookmark_me
  *
@@ -37,43 +33,78 @@ load_plugin_textdomain('sem-bookmark-me', false, dirname(plugin_basename(__FILE_
 
 class bookmark_me extends WP_Widget {
 
-    /**
-   	 * bookmark_me()
-   	 *
-   	 * @return void
-   	 **/
+	/**
+	 * Plugin instance.
+	 *
+	 * @see get_instance()
+	 * @type object
+	 */
+	protected static $instance = NULL;
+
+	/**
+	 * URL to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_url = '';
+
+	/**
+	 * Path to this plugin's directory.
+	 *
+	 * @type string
+	 */
+	public $plugin_path = '';
+
+	/**
+	 * Access this plugin’s working instance
+	 *
+	 * @wp-hook plugins_loaded
+	 * @return  object of this class
+	 */
+	public static function get_instance()
+	{
+		NULL === self::$instance and self::$instance = new self;
+
+		return self::$instance;
+	}
+
+	/**
+	 * Loads translation file.
+	 *
+	 * Accessible to other classes to load different language files (admin and
+	 * front-end for example).
+	 *
+	 * @wp-hook init
+	 * @param   string $domain
+	 * @return  void
+	 */
+	public function load_language( $domain )
+	{
+		load_plugin_textdomain(
+			$domain,
+			FALSE,
+			$this->plugin_path . 'lang'
+		);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 *
+	 */
 
 	public function __construct() {
+		$this->plugin_url    = plugins_url( '/', __FILE__ );
+		$this->plugin_path   = plugin_dir_path( __FILE__ );
+		$this->load_language( 'sem-bookmark-me' );
 
-        add_action('widgets_init', array($this, 'widgets_init'));
-
-        if ( !is_admin() ) {
-        	add_action('wp_enqueue_scripts', array($this, 'scripts'));
-        	add_action('wp_enqueue_scripts', array($this, 'styles'), 0);
-        	add_action('template_redirect', array($this, 'template_redirect'), 5);
-        }
-
-        foreach ( array(
-        		'switch_theme',
-        		'update_option_active_plugins',
-        		'update_option_sidebars_widgets',
-        		'generate_rewrite_rules',
-
-        		'flush_cache',
-        		'after_db_upgrade',
-        		) as $hook ) {
-        	add_action($hook, array($this, 'flush_cache'));
-        }
-
-        register_activation_hook(__FILE__, array($this, 'flush_cache'));
-        register_deactivation_hook(__FILE__, array($this, 'flush_cache'));
+		add_action( 'plugins_loaded', array ( $this, 'init' ) );
 
    		$widget_ops = array(
    			'classname' => 'bookmark_me',
    			'description' => __('Bookmark links to social media sites such as Facebook, Google+ and Twitter', 'sem-bookmark-me'),
    			);
 
-   		$this->init();
    		$this->WP_Widget('bookmark_me', __('Bookmark Me', 'sem-bookmark-me'), $widget_ops);
    	} # bookmark_me()
 
@@ -97,6 +128,29 @@ class bookmark_me extends WP_Widget {
 				}
 			}
 		}
+
+		add_action('widgets_init', array($this, 'widgets_init'));
+
+	    if ( !is_admin() ) {
+		    add_action('wp_enqueue_scripts', array($this, 'scripts'));
+		    add_action('wp_enqueue_scripts', array($this, 'styles'), 0);
+		    add_action('template_redirect', array($this, 'template_redirect'), 5);
+	    }
+
+		foreach ( array(
+		    'switch_theme',
+		    'update_option_active_plugins',
+		    'update_option_sidebars_widgets',
+		    'generate_rewrite_rules',
+
+		    'flush_cache',
+		    'after_db_upgrade',
+		    ) as $hook ) {
+			add_action($hook, array($this, 'flush_cache'));
+		}
+
+	    register_activation_hook(__FILE__, array($this, 'flush_cache'));
+	    register_deactivation_hook(__FILE__, array($this, 'flush_cache'));
 	} # init()
 	
 	
@@ -661,4 +715,4 @@ function the_bookmark_links($instance = null, $args = null) {
 	the_widget('bookmark_me', $instance, $args);
 } # the_bookmark_links()
 
-$bookmark_me = new bookmark_me();
+$bookmark_me = bookmark_me::get_instance();
