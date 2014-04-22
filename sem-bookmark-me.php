@@ -3,7 +3,7 @@
 Plugin Name: Bookmark Me
 Plugin URI: http://www.semiologic.com/software/bookmark-me/
 Description: Widgets that let your visitors share your webpages on social media sites such as Buzzup, Delicious and Digg.
-Version: 5.4 dev
+Version: 5.4
 Author: Denis de Bernardy & Mike Koepke
 Author URI: http://www.getsemiologic.com
 Text Domain: sem-bookmark-me
@@ -184,8 +184,8 @@ class bookmark_me extends WP_Widget {
 	 **/
 
 	function scripts() {
-		$folder = plugin_dir_url(__FILE__);
-		wp_enqueue_script('bookmark_me', $folder . 'js/scripts.js', array('jquery'), '20090906', true);
+		$scripts_js = ( WP_DEBUG ? 'scripts.min.js' : 'scripts.js' );
+		wp_enqueue_script('bookmark_me', plugins_url( '/js/' . $scripts_js, __FILE__), array('jquery'), '20090906', true);
 	} # scripts()
 	
 	
@@ -271,8 +271,20 @@ class bookmark_me extends WP_Widget {
 			# http://core.trac.wordpress.org/ticket/9477
 			$print_action = '?action=print';
 		}
-		
-		if ( !( $o = wp_cache_get($widget_id, 'widget') ) ) {
+
+		$use_caching = true;
+		global $wp_version;
+		if ( version_compare( $wp_version, '3.9', '>=' ) )
+			if ( $this->is_preview() )
+				$use_caching = false;
+
+		if ( $use_caching ) {
+			$o = wp_cache_get($widget_id, 'widget');
+		}
+		else
+			$o = '';
+
+		if ( empty( $o ) ) {
 			# check if the widget has a class
 			if ( strpos($before_widget, 'bookmark_me') === false ) {
 				if ( preg_match("/^(<[^>]+>)/", $before_widget, $tag) ) {
@@ -348,8 +360,10 @@ class bookmark_me extends WP_Widget {
 			echo $after_widget;
 
 			$o = ob_get_clean();
-			
-			wp_cache_add($widget_id, $o, 'widget');
+
+			if ( $use_caching ) {
+				wp_cache_add($widget_id, $o, 'widget');
+			}
 		}
 		
 		echo str_replace(
