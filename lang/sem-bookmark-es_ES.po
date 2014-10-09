@@ -1,0 +1,137 @@
+# Copyright (C) 2014 Bookmark Me
+# This file is distributed under the same license as the Bookmark Me package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Bookmark Me 5.4\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/sem-bookmark-me\n"
+"POT-Creation-Date: 2014-04-22 17:30:44+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-09-23 09:50+0100\n"
+"Last-Translator: jelena kovacevic <jecajeca260@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.5.5\n"
+
+#: print.php:45
+msgid "Filed under %s"
+msgstr "Archivado bajo %s"
+
+#. #-#-#-#-#  sem-bookmark-me.pot (Bookmark Me 5.4)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: sem-bookmark-me-info.php:2 sem-bookmark-me.php:108
+msgid "Bookmark Me"
+msgstr "Márcame"
+
+#. #-#-#-#-#  sem-bookmark-me.pot (Bookmark Me 5.4)  #-#-#-#-#
+#. Description of the plugin/theme
+#: sem-bookmark-me-info.php:3
+msgid ""
+"Widgets that let your visitors share your webpages on social media sites "
+"such as Buzzup, Delicious and Digg."
+msgstr ""
+"Widgets que permite a sus visitantes compartir sus páginas web en sitios de "
+"redes sociales tales como Buzzup, Delicious y Digg."
+
+#: sem-bookmark-me.php:105
+msgid ""
+"Bookmark links to social media sites such as Facebook, Google+ and Twitter"
+msgstr ""
+"Los marcadores enlazan a sitios de redes sociales como Facebook, Google+ y "
+"Twitter"
+
+#: sem-bookmark-me.php:316 sem-bookmark-me.php:317
+msgid "Email"
+msgstr "Email"
+
+#: sem-bookmark-me.php:321 sem-bookmark-me.php:322
+msgid "Print"
+msgstr "Imprimir"
+
+#: sem-bookmark-me.php:426
+msgid "Facebook"
+msgstr "Facebook"
+
+#: sem-bookmark-me.php:430
+msgid "Google+"
+msgstr "Google+"
+
+#: sem-bookmark-me.php:434
+msgid "Twitter"
+msgstr "Twitter"
+
+#: sem-bookmark-me.php:438
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: sem-bookmark-me.php:454
+msgid "Delicious"
+msgstr "Delicious"
+
+#: sem-bookmark-me.php:458
+msgid "Digg"
+msgstr "Digg"
+
+#: sem-bookmark-me.php:462
+msgid "Fark"
+msgstr "Fark"
+
+#: sem-bookmark-me.php:466
+msgid "Google"
+msgstr "Google"
+
+#: sem-bookmark-me.php:470
+msgid "Instapaper"
+msgstr "Instapaper"
+
+#: sem-bookmark-me.php:474
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: sem-bookmark-me.php:482
+msgid "MySpace"
+msgstr "MySpace"
+
+#: sem-bookmark-me.php:486
+msgid "Newsvine"
+msgstr "Newsvine"
+
+#: sem-bookmark-me.php:490
+msgid "Pocket"
+msgstr "Pocket"
+
+#: sem-bookmark-me.php:494
+msgid "Readability"
+msgstr "Readability"
+
+#: sem-bookmark-me.php:498
+msgid "Reddit"
+msgstr "Reddit"
+
+#: sem-bookmark-me.php:502
+msgid "StumbleUpon"
+msgstr "StumbleUpon"
+
+#: sem-bookmark-me.php:506
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: sem-bookmark-me.php:510
+msgid "Yahoo!"
+msgstr "Yahoo!"
+
+#: sem-bookmark-me.php:584
+msgid "Title:"
+msgstr "Título:"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.semiologic.com/software/bookmark-me/"
+msgstr "http://www.semiologic.com/software/bookmark-me/"
+
+#. Author of the plugin/theme
+msgid "Denis de Bernardy & Mike Koepke"
+msgstr "Denis de Bernardy & Mike Koepke"
+
+#. Author URI of the plugin/theme
+msgid "http://www.getsemiologic.com"
+msgstr "http://www.getsemiologic.com"

@@ -3,7 +3,7 @@ Contributors: Denis-de-Bernardy, Mike_Koepke
 Donate link: http://www.semiologic.com/partners/
 Tags: bookmark-me, social-bookmarking, social-media, google+, delicious, digg, facebook, pinterest, reddit, stumbleupon, twitter, bookmarking, widget, semiologic
 Requires at least: 2.8
-Tested up to: 3.9
+Tested up to: 4.0
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -41,6 +41,11 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 
 
 == Change Log ==
+
+= 5.5 =
+
+- Added spanish language translations (props andrew@WebHostingHub)
+- WP 4.0 compatibility
 
 = 5.4.3 =
 
