@@ -1,9 +1,9 @@
 === Bookmark Me ===
 Contributors: Denis-de-Bernardy, Mike_Koepke
-Donate link: http://www.semiologic.com/partners/
+Donate link: https://www.semiologic.com/donate/
 Tags: bookmark-me, social-bookmarking, social-media, google+, delicious, digg, facebook, pinterest, reddit, stumbleupon, twitter, bookmarking, widget, semiologic
 Requires at least: 2.8
-Tested up to: 4.0
+Tested up to: 4.3
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -29,9 +29,8 @@ The call accepts an optional argument, which sets the widget's title.
 
 = Help Me! =
 
-The [Semiologic forum](http://forum.semiologic.com) is the best place to report issues. Please note, however, that while community members and I do our best to answer all queries, we're assisting you on a voluntary basis.
+The [Plugin's Forum](https://wordpress.org/support/plugin/sem-bookmark-me) is the best place to report issues.
 
-If you require more dedicated assistance, consider using [Semiologic Pro](http://www.getsemiologic.com).
 
 
 == Installation ==
@@ -41,6 +40,12 @@ If you require more dedicated assistance, consider using [Semiologic Pro](http:/
 
 
 == Change Log ==
+
+= 5.6 =
+
+- Updated to use PHP5 constructors as WP deprecated PHP4 constructor type in 4.3.
+- WP 4.3 compat
+- Tested against PHP 5.6
 
 = 5.5 =
 
