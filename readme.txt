@@ -41,6 +41,10 @@ The [Plugin's Forum](https://wordpress.org/support/plugin/sem-bookmark-me) is th
 
 == Change Log ==
 
+= 5.6.1 =
+
+- Had inclusion of minified js reversed in production/debug mode.  doh!
+
 = 5.6 =
 
 - Updated to use PHP5 constructors as WP deprecated PHP4 constructor type in 4.3.
